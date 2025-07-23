@@ -1,5 +1,5 @@
 import { Linking, Text, View } from "react-native";
-import { value, clientData } from "./utils/datas";
+import { value, clientData } from "./data/datas";
 import { DataTable } from "react-native-paper";
 import { z, ZodError } from "zod";
 import { useMemo } from "react";
@@ -26,10 +26,9 @@ clientData.forEach((field) => {
 
     case "text":
     default:
-      valueSchemaShape[field.name] = z
-        .string()
-        .min(1, { message: "Поле не должно быть пустым" })
-        .optional();
+      if(field.validation){
+        valueSchemaShape[field.name] = field.validation
+      }
       break;
   }
 });

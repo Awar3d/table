@@ -7,7 +7,7 @@ import { NumberInput } from './componentsStories/Numbers';
 import { DatePicker } from './componentsStories/DataPicker';
 import { TextAreaField } from './componentsStories/TextArea';
 import React, { useState } from 'react';
-import { greateValue } from "./utils/datas";
+import { greateValue } from "./data/datas";
 import { Email } from "./componentsStories/Email";
 
 type Field = {
@@ -19,7 +19,7 @@ type Field = {
 
 interface GreatComponentProps {
   mode: 'read' | 'write',
-  data: Field[] // дата которая для компонентов
+  data: Field[]
 }
 
 export const GreatComponent = ({ mode, data }: GreatComponentProps) => {

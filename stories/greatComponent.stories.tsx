@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-native';
 
 import { GreatComponent } from './greatComponent';
 
-import { clientData } from "./utils/datas";
+import { clientData } from "./data/datas";
 
 const meta = {
   title: 'Example/GreatComponent',

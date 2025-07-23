@@ -1,4 +1,4 @@
-import { maxLength, minLength } from "zod";
+import { z } from 'zod';
 
 const ROLES = {
   ADMIN: "admin",
@@ -33,29 +33,29 @@ export const greateValue = {
 
 export const value = [
   {
-    fullName: 'aaaa',
-    phone: '+77051528593',
+    fullName: '',
+    phone: '',
     email: 'examplegmail.com',
     role: 'mechanic',
   },
   {
     fullName: 'Иванов Владимир',
-    phone: '+77051528593',
+    phone: '877051528593',
     email: 'example@gmail.com',
-    role: 'mechanic',
+    role: '',
     description: 'aaaa',
   },
   {
     fullName: '',
     phone: '+77081920863',
-    email: 'example@gmail.com',
+    email: 'example@gmail',
     role: 'mechanic',
   },
   {
     fullName: 'Гарусов Василий',
-    phone: '+77051528593',
+    phone: '',
     email: 'example@gmail.com',
-    role: 'mechanic',
+    role: '',
   }
 ]
 
@@ -67,8 +67,8 @@ export const clientData = [
     list: [ROLES.ADMIN],
     form: [ROLES.ADMIN],
     board: [],
-    min: 5,
-    max: 100,
+    required: true,
+    validation: z.string().min(1, { message: "Поле не должно быть пустым" }).optional(),
   },
   {
     name: "phone",

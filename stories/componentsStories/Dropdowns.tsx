@@ -7,7 +7,6 @@ import {
   FlatList,
   LayoutChangeEvent,
 } from 'react-native';
-import { value } from '../utils/datas';
 
 type DropdownProps = {
   options: string[];
@@ -90,8 +89,7 @@ export const MyDropDown = ({
 
 const styles = StyleSheet.create({
   container: {
-    zIndex: 1,
-    maxWidth: 500
+    zIndex: 9999,
   },
   wrapper: {
     zIndex: 1,
