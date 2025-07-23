@@ -7,7 +7,7 @@ interface TextAreaProps {
   placeholder?: string;
   value?: string;
   onChange?: (text: string) => void;
-  state: 'read' | 'write';
+  mode: 'read' | 'write';
 }
 
 export const TextAreaField = ({
@@ -15,7 +15,7 @@ export const TextAreaField = ({
   placeholder = '',
   value = '',
   onChange = () => {},
-  state
+  mode
 }: TextAreaProps) => {
   const [text, setText] = useState(value);
   const [error, setError] = useState(false);
@@ -33,7 +33,7 @@ export const TextAreaField = ({
     }
     onChange(input);
   };
-  const isRead = state === 'read';
+  const isRead = mode === 'read';
 
   return (
     <View style={{ marginVertical: 8 }}>

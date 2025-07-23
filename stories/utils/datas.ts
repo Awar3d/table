@@ -1,3 +1,5 @@
+import { maxLength, minLength } from "zod";
+
 const ROLES = {
   ADMIN: "admin",
   MECHANIC: "mechanic",
@@ -19,31 +21,41 @@ const optionRoles = [
   ROLES.STO,
 ];
 
+export const greateValue = {
+  fullName: 'Тарасов Василий',
+  phone: '+77051528593',
+  email: 'example@gmail.com',
+  duration: '12',
+  description: 'yeah',
+  date: '02.11.25',
+  role: 'Дөңгелектердің бұрылысы',
+}
+
 export const value = [
   {
-    fullName: 'Тарасов Василий',
+    fullName: 'aaaa',
     phone: '+77051528593',
-    email: '',
-    // date: '02.11.25',
-    role: 'Дөңгелектердің бұрылысы',
+    email: 'examplegmail.com',
+    role: 'mechanic',
   },
   {
     fullName: 'Иванов Владимир',
-    phone: '+77779385737',
-    email: '',
-    role: 'Механик'
+    phone: '+77051528593',
+    email: 'example@gmail.com',
+    role: 'mechanic',
+    description: 'aaaa',
   },
   {
-    fullName: 'Саптояков Азамат',
+    fullName: '',
     phone: '+77081920863',
-    email: '',
-    role: 'Электрик'
+    email: 'example@gmail.com',
+    role: 'mechanic',
   },
   {
     fullName: 'Гарусов Василий',
     phone: '+77051528593',
-    email: '',
-    role: 'Механик'
+    email: 'example@gmail.com',
+    role: 'mechanic',
   }
 ]
 
@@ -55,7 +67,8 @@ export const clientData = [
     list: [ROLES.ADMIN],
     form: [ROLES.ADMIN],
     board: [],
-    required: true,
+    min: 5,
+    max: 100,
   },
   {
     name: "phone",

@@ -6,13 +6,13 @@ import { MaskedTextInput } from 'react-native-mask-text';
 interface NumberInputProps {
   label: string;
   placeholder?: string;
-  state: 'read' | 'write';
-  valueToShow: string
+  mode: 'read' | 'write';
+  valueToShow: string;
 }
 
-export const NumberInput = ({ label, placeholder, state, valueToShow }: NumberInputProps) => {
+export const NumberInput = ({ label, placeholder, mode, valueToShow }: NumberInputProps) => {
   const [error, setError] = useState(false);
-  const isRead = state === 'read';
+  const isRead = mode === 'read';
 
   const handleChangeNumber = (rawText: string) => {
     if(rawText.trim() === ''){

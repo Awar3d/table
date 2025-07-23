@@ -7,7 +7,7 @@ import { NumberInput } from './componentsStories/Numbers';
 import { DatePicker } from './componentsStories/DataPicker';
 import { TextAreaField } from './componentsStories/TextArea';
 import React, { useState } from 'react';
-import { value } from "./data/datas";
+import { greateValue } from "./utils/datas";
 import { Email } from "./componentsStories/Email";
 
 type Field = {
@@ -18,14 +18,14 @@ type Field = {
 }
 
 interface GreatComponentProps {
-  state: 'read' | 'write',
+  mode: 'read' | 'write',
   data: Field[] // дата которая для компонентов
 }
 
-export const GreatComponent = ({ state, data }: GreatComponentProps) => {
+export const GreatComponent = ({ mode, data }: GreatComponentProps) => {
   const [formValues, setFormValues] = React.useState<Record<string, string>>({});
   const [error, setError] = useState(false);
-  const isRead = state === 'read';
+  const isRead = mode === 'read';
 
   const handleChange = (name: string, value: string) => {
     setFormValues((prev) => ({
@@ -42,7 +42,7 @@ export const GreatComponent = ({ state, data }: GreatComponentProps) => {
   const renderField = (field: Field) => {
   const rawValue =
     formValues[field.name] ??
-    value[field.name as keyof typeof value] ??
+    greateValue[field.name as keyof typeof greateValue] ??
     '';
 
   const fieldValue =
@@ -65,7 +65,7 @@ export const GreatComponent = ({ state, data }: GreatComponentProps) => {
         <PhoneNumber
           label={field.label}
           placeholder={field.name}
-          state={state}
+          mode={mode}
           value={fieldValue}
         />
       );
@@ -98,7 +98,7 @@ export const GreatComponent = ({ state, data }: GreatComponentProps) => {
           <MyDropDown
             options={field.options}
             onSelect={(val) => handleChange(field.name, val)}
-            state={state}
+            mode={mode}
             value={fieldValue}
           />
         );
@@ -110,19 +110,19 @@ export const GreatComponent = ({ state, data }: GreatComponentProps) => {
         <NumberInput
           label={field.label}
           placeholder={field.name}
-          state={state}
+          mode={mode}
           valueToShow={fieldValue}
         />
       );
 
     case 'datePicker':
-      return <DatePicker state={state} value={fieldValue}/>;
+      return <DatePicker mode={mode} value={fieldValue}/>;
 
     case 'textarea':
       return (
         <TextAreaField
           label={field.label}
-          state={state}
+          mode={mode}
           value={fieldValue}
         />
       );

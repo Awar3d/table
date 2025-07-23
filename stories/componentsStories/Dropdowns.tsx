@@ -7,13 +7,13 @@ import {
   FlatList,
   LayoutChangeEvent,
 } from 'react-native';
-import { value } from '../data/datas';
+import { value } from '../utils/datas';
 
 type DropdownProps = {
   options: string[];
   onSelect: (value: string) => void;
   placeholder?: string;
-  state: 'read' | 'write';
+  mode: 'read' | 'write';
   value: string
 };
 
@@ -21,7 +21,7 @@ export const MyDropDown = ({
   options,
   onSelect,
   placeholder = 'Выбрать..',
-  state,
+  mode,
   value
 }: DropdownProps) => {
   const [selected, setSelected] = useState<string | null>(value);
@@ -29,7 +29,7 @@ export const MyDropDown = ({
   const [dropdownTop, setDropdownTop] = useState(0);
   const [dropdownLeft, setDropdownLeft] = useState(0);
   const [dropdownWidth, setDropdownWidth] = useState(0);
-  const isRead = state === 'read';
+  const isRead = mode === 'read';
 
   const onLayout = (event: LayoutChangeEvent) => {
     const { height, y, x, width } = event.nativeEvent.layout;
@@ -55,7 +55,10 @@ export const MyDropDown = ({
           onPress={() => setVisible(!visible)}
           disabled={isRead}
         >
-          <Text style={styles.buttonText}>{selected || placeholder}</Text>
+           <View style={styles.buttonContent}>
+            <Text style={styles.buttonText}>{selected || placeholder}</Text>
+            <Text style={styles.arrow}>▼</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -87,23 +90,36 @@ export const MyDropDown = ({
 
 const styles = StyleSheet.create({
   container: {
-    zIndex: 1
+    zIndex: 1,
+    maxWidth: 500
   },
   wrapper: {
     zIndex: 1,
   },
   button: {
     padding: 12,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: '#fff',
     borderRadius: 8,
     alignItems: 'center',
+    borderColor: '#000',
+    borderWidth: 1
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  arrow: {
+    marginLeft: 8,
+    fontSize: 16,
+    color: '#000',
   },
   buttonText: {
-    color: '#fff',
+    color: '#000',
     fontSize: 16,
   },
   dropdown: {
-    backgroundColor: '#fff',
     borderRadius: 8,
     maxHeight: 200,
     elevation: 6,

@@ -6,14 +6,14 @@ import { MaskedTextInput } from 'react-native-mask-text';
 interface PhoneNumberProps {
   label: string;
   placeholder: string;
-  state: 'read' | 'write';
+  mode: 'read' | 'write';
   value: string;
 }
 
-export const PhoneNumber = ({ label, placeholder, state, value }: PhoneNumberProps) => {
+export const PhoneNumber = ({ label, placeholder, mode, value }: PhoneNumberProps) => {
   const [phone, setPhone] = useState(value);
   const [error, setError] = useState(false);
-  const isRead = state === 'read';
+  const isRead = mode === 'read';
 
   const handlePhoneChange = (rawText: string) => {
     setPhone(rawText);

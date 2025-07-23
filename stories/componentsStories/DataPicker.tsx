@@ -4,14 +4,14 @@ import { Provider as PaperProvider, Text } from 'react-native-paper';
 import { DatePickerModal } from 'react-native-paper-dates';
 
 type DatePickerProp = {
-  state: 'read' | 'write';
+  mode: 'read' | 'write';
   value: string
 };
 
-export const DatePicker = ({ state, value }: DatePickerProp) => {
+export const DatePicker = ({ mode, value }: DatePickerProp) => {
   const [date, setDate] = useState<Date | undefined>();
   const [open, setOpen] = useState(false);
-  const isRead = state === 'read';
+  const isRead = mode === 'read';
 
   return (
     <PaperProvider>
